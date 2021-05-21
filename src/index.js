@@ -1,6 +1,9 @@
 const server = require('./server.js')
 const { MongoClient } = require('mongodb')
-const UsersDao = require('./dao/usersDao')
+const UsersDao = require('./dao/usersDao.js')
+const CoursesDao = require('./dao/coursesDao.js')
+const BooksDao = require('./dao/booksDao.js')
+const CardsDao = require('./dao/cardsDao.js')
 
 const port = process.env.PORT
 
@@ -18,6 +21,9 @@ MongoClient.connect(
     .then(async (mongoClient) => {
         //Do injections
         await UsersDao.injectDb(mongoClient)
+        await CoursesDao.injectDb(mongoClient)
+        await BooksDao.injectDb(mongoClient)
+        await CardsDao.injectDb(mongoClient)
         server.listen(port, () => {
             console.log(`Listenint on port ${port}`);
         })
