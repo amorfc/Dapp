@@ -1,6 +1,9 @@
 class UserController {
     static async register(req, res){
-        console.log(req);
+
+        const userFromBody = req.body
+        
+        console.log(req.body);
         res.json({
             "done":"done"
         })
