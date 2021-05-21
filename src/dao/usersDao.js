@@ -5,10 +5,8 @@ let users
 
 class UsersDao {
     static async injectDb(connection) {
-        if (dapp) {
-            return
-        }
-
+        if (dapp)return
+        
         try {
             dapp = await connection.db(process.env.MONGO_DB_DAPP_NAME)
             users = await connection.db(process.env.DB_NAME).collection(process.env.USERS_COLLECTION_NAME)
