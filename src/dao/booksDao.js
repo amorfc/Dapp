@@ -8,7 +8,7 @@ class BooksDao {
 
         try {
             dapp = connection.db(process.env.DB_NAME)
-            books = connection.db(process.env.DB_NAME).collection(BOOKS_COLLECTION_NAME)
+            books = connection.db(process.env.DB_NAME).collection(process.env.BOOKS_COLLECTION_NAME)
         } catch (error) {
             console.error(
                 `Unable to establish a collection handle in moviesDAO: ${error}`,

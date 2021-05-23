@@ -9,7 +9,7 @@ class CardsDao {
 
         try {
             dapp =  connection.db(process.env.DB_NAME)
-            cards =  connection.db(process.env.DB_NAME).collection(CARDS_COLLECTION_NAME)
+            cards =  connection.db(process.env.DB_NAME).collection(process.env.CARDS_COLLECTION_NAME)
         } catch (error) {
             console.error(
                 `Unable to establish a collection handle in moviesDAO: ${error}`)
