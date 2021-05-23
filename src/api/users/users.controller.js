@@ -1,6 +1,5 @@
 const UsersDao = require('../../dao/usersDao.js')
 const User = require('../../models/User')
-const { hashPassword } = require('../../utils.js')
 const AuthControler = require('../authController.js')
 class UserController {
     static async register(req, res) {
@@ -27,12 +26,11 @@ class UserController {
             const newUserFromDb = await UsersDao.getUserWithSchoolNo(userFromBody.schoolNo)
 
             const user = new User(newUserFromDb.data)
-            console.log(`user class user  ${JSON.stringify(user)}`);
             // //Res send properly with filtered from cases
             // //If password wrong
 
             res.json({
-                data:user.toJson(),
+                data: AuthControler.encoded(user.toJson()),
                 message: "User Created Succesfully"
             })
 

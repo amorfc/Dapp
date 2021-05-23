@@ -8,7 +8,6 @@ class User {
     toJson() {
         return {
             schoolNo: this.schoolNo, 
-            password: this.password, 
             preferences: this.preferences
         }
     }
