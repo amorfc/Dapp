@@ -51,6 +51,29 @@ class UsersDao {
         }
         return result
     }
+    static async loginUser(user, userJwtToken) {
+        try {
+            await sessions.updateOne(
+                { user_id: user.schoolNo },
+                { $set: { jwt: userJwtToken } },
+                { upsert: true }
+            )
+            return { success: true }
+        } catch (error) {
+            console.error(`Error occurred while logging in user, ${e}`)
+            return { error: error }
+        }
+    }
+    static async logoutUser(user) {
+        try {
+            const dbResult = await sessions.deleteOne({ user_id: user.schoolNo })
+            console.log(dbResult);
+            return { success: true }
+        } catch (error) {
+            console.error(`Error occurred while logout user, ${e}`)
+            return { error: error }
+        }
+    }
 }
 
 module.exports = UsersDao
