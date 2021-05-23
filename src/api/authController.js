@@ -16,7 +16,7 @@ class AuthControler {
             process.env.SECRET_KEY
         )
     }
-    static async decode(jwtToken) {
+    static decode(jwtToken) {
         return jwt.verify(jwtToken, process.env.SECRET_KEY, (error, result) => {
 
             if (error) {
@@ -26,7 +26,6 @@ class AuthControler {
         })
     }
     static async verifyUserJwt(req, res, next) {
-        console.log(req.headers);
         const authorization = req.headers.authorization
         if (authorization) {
             const jwtTokenFromHeader = authorization.split(" ")[1]
