@@ -1,7 +1,5 @@
 class User {
-    constructor({ name, surname, schoolNo, password, preferences = {} } = {}) {
-        this.name = name
-        this.surname = surname
+    constructor({ schoolNo, password, preferences = {} } = {}) {
         this.schoolNo = schoolNo
         this.password = password
         this.preferences = preferences
@@ -9,11 +7,11 @@ class User {
 
     toJson() {
         return {
-            name: this.name, 
-            surname: this.surname, 
             schoolNo: this.schoolNo, 
             password: this.password, 
             preferences: this.preferences
         }
     }
 }
+
+module.exports = User
