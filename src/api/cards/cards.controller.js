@@ -27,14 +27,14 @@ class CardsController {
             res.status(500).json({ error: error })
         }
     }
-    static async getCard(req, res){
+    static async getCard(req, res) {
         try {
             const { authenticatedUser } = req
 
             const cardFromDbResult = await CardsDao.getCard(authenticatedUser.schoolNo)
             console.log(cardFromDbResult);
-            if(!cardFromDbResult.success){
-                res.status(401).json({error: "There is no card associate with this student "})
+            if (!cardFromDbResult.success) {
+                res.status(401).json({ error: "There is no card associate with this student " })
                 return
             }
             const card = new Card(cardFromDbResult.data)
@@ -44,7 +44,28 @@ class CardsController {
             })
 
         } catch (error) {
-            res.status(500).json({error:error})
+            res.status(500).json({ error: error })
+        }
+    }
+    static async updateCard(req, res) {
+        try {
+            const { authenticatedUser } = req
+
+            const newCardInfoFromBody = req.body
+            const dbResult = await CardsDao.updateCard(authenticatedUser.schoolNo, newCardInfoFromBody)
+            
+            if (!dbResult.success) {
+                res.status(401).json({ error: "Something went wrong while updating card" })
+                return
+            }
+
+            res.json({
+                data:{},
+                message: "Card Succesfully Updated"
+            })
+
+        } catch (error) {
+            res.status(500).json({ error: error })
         }
     }
 }

@@ -24,10 +24,24 @@ class CardsDao {
     static async getCard(schoolNo) {
         try {
             const response = await cards.findOne({ card_id: schoolNo })
-            return { 
+            return {
                 success: true,
-                data:response
+                data: response
             }
+        } catch (error) {
+            return { error: error }
+        }
+    }
+    static async updateCard(schoolNo, newCard) {
+        try {
+            const result = await cards.updateOne(
+                { card_id: schoolNo },
+                { $set: { ...newCard } },
+            )
+            if (result.result.n > 0) {
+                return { success: true }
+            }
+            return { success: false }
         } catch (error) {
             return { error: error }
         }
