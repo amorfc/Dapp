@@ -16,9 +16,20 @@ class CardsDao {
     static async addCard(card) {
         try {
             await cards.insertOne(card)
-            return {success: true}
+            return { success: true }
         } catch (error) {
-            return {error: error}
+            return { error: error }
+        }
+    }
+    static async getCard(schoolNo) {
+        try {
+            const response = await cards.findOne({ card_id: schoolNo })
+            return { 
+                success: true,
+                data:response
+            }
+        } catch (error) {
+            return { error: error }
         }
     }
 }
