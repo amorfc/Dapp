@@ -4,8 +4,8 @@ class AuthControler {
     static async hashPassword(password) {
         return await bcrypt.hash(password, 10)
     }
-    static async comparePassword(userPassword, passwordFromDb) {
-
+    static async comparePassword(userPassword, hashedPasswordFromDb) {
+        return await bcrypt.compare(userPassword, hashedPasswordFromDb)
     }
     static encoded(payload) {
         return jwt.sign(
