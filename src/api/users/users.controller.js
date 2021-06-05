@@ -35,7 +35,7 @@ class UserController {
             })
 
         } catch (error) {
-            res.status(500).json({ error })
+            res.status(500).json({ error: error })
         }
     }
     static async login(req, res) {
