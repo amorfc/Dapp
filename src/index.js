@@ -20,6 +20,7 @@ MongoClient.connect(
     })
     .then(async (mongoClient) => {
         //Do injections
+        console.log(mongoClient.s.options)
         await UsersDao.injectDb(mongoClient)
         await CoursesDao.injectDb(mongoClient)
         await BooksDao.injectDb(mongoClient)
