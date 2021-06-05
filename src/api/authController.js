@@ -30,6 +30,7 @@ class AuthControler {
         if (authorization) {
             const jwtTokenFromHeader = authorization.split(" ")[1]
             const user = AuthControler.decode(jwtTokenFromHeader)
+            console.log(user);
             req.authenticatedUser = user
             next()
         } else {
