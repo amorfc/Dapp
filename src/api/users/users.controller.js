@@ -54,7 +54,7 @@ class UserController {
             const user = new User(userFromDbResult.data)
 
             if (!(await AuthControler.comparePassword(userFromBody.password, user.password))) {
-                res.status(500).json({ error: "Password is wrong" })
+                res.status(401).json({ error: "Password is wrong" })
                 return
             }
 
