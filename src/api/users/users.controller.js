@@ -67,7 +67,7 @@ class UserController {
             }
 
             if (Object.keys(errors).length > 0) {
-                res.status(400).json(errors)
+                res.status(401).json(errors)
                 return
             }
 
