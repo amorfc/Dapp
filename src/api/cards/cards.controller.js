@@ -30,7 +30,7 @@ class CardsController {
   static async getCard(req, res) {
     try {
       const { authenticatedUser } = req;
-
+      console.log(`${authenticatedUser.schoolNo} tries to get NFC Card`)
       const cardFromDbResult = await CardsDao.getCard(authenticatedUser.schoolNo);
       if (!cardFromDbResult.success) {
         res

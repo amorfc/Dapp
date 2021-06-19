@@ -44,6 +44,8 @@ class UserController {
             const userFromBody = req.body
             //Validations must happen here
 
+            console.log(` Student ${req.body.schoolNo} tries to Login`)
+
             const userFromDbResult = await UsersDao.getUserWithSchoolNo(userFromBody.schoolNo)
 
             if (!userFromDbResult.success) {
