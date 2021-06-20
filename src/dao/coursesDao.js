@@ -19,7 +19,6 @@ class CoursesDao {
     }
   }
   static async getAllCourses(schoolNo) {
-      console.log(schoolNo);
     try {
       const filter = {
         'schoolNo': schoolNo,

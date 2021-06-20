@@ -50,9 +50,8 @@ class UserController {
       const userFromDbResult = await UsersDao.getUserWithSchoolNo(
         userFromBody.schoolNo
       );
-
       if (!userFromDbResult.success) {
-        res.status(401).json({ error: "Make sure your email is correct." });
+        res.status(200).json({ error: userFromDbResult.error });
         return;
       }
 
@@ -64,7 +63,7 @@ class UserController {
           user.password
         ))
       ) {
-        res.status(401).json({ error: "Password is wrong" });
+        res.status(200).json({ error: "Password is wrong" });
         return;
       }
 
@@ -72,7 +71,7 @@ class UserController {
       const loginResponse = await UsersDao.loginUser(user, currentUserToken);
 
       if (!loginResponse.success) {
-        res.status(401).json({ error: "Credentials Is not true" });
+        res.status(200).json({ error: "Credentials Is not true" });
         return;
       }
 
@@ -80,12 +79,12 @@ class UserController {
         res.status(401).json(errors);
         return;
       }
-      delete user['password']
+      delete user["password"];
       res.json({
-        data: { 
-            user: user.toJson(),
-            token: await AuthControler.encoded(user.toJson())
-         },
+        data: {
+          user: user.toJson(),
+          token: await AuthControler.encoded(user.toJson()),
+        },
         message: "Succesfully Logged In",
         isAuthenticated: true,
       });

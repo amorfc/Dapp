@@ -44,6 +44,9 @@ class UsersDao {
         }
         try {
             const getUserResult = await users.findOne({ schoolNo: schoolNo })
+            if(!getUserResult){
+                throw "Student Not Exists"
+            }
             result.data = getUserResult
             result.success = true
         } catch (error) {
@@ -67,7 +70,6 @@ class UsersDao {
     static async logoutUser(user) {
         try {
             const dbResult = await sessions.deleteOne({ user_id: user.schoolNo })
-            console.log(dbResult);
             return { success: true }
         } catch (error) {
             console.error(`Error occurred while logout user, ${e}`)

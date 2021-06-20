@@ -10,7 +10,6 @@ class CourseController {
                 res.status(401).json({ error: coursesListFromDb.error })
                 return
             }
-            console.log(coursesListFromDb);
             res.json({
                 data: coursesListFromDb.data,
                 message: "Courses successfully fetched!!!AmerBombomvski"
