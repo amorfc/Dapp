@@ -7,7 +7,7 @@ const router = new Router()
 router.route('/register').post(UserController.register)
 router.route('/login').post(UserController.login)
 router.route('/logout').post(AuthControler.verifyUserJwt, UserController.logout)
-router.route('/enter').post(UserController.enter)
+router.route('/enter').post(AuthControler.verifyUserJwt, UserController.enter)
 
 
 
