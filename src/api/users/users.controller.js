@@ -94,9 +94,9 @@ class UserController {
   }
   static async logout(req, res) {
     try {
-      const userFromBody = req.body;
-
-      const logoutResponse = await UsersDao.logoutUser(userFromBody);
+      const { authenticatedUser } = req
+      console.log(`${authenticatedUser.schoolNo} tries to Logout...`)
+      const logoutResponse = await UsersDao.logoutUser(authenticatedUser);
       if (!logoutResponse.success) {
         res.status(401).json({
           error: "User could not logout succesfully!!!",
@@ -106,6 +106,14 @@ class UserController {
         data: "Yup!",
         message: "Successfully logged out!!!",
       });
+    } catch (error) {
+      res.status(500).json({ error: error });
+    }
+  }
+
+  static async enter(req, res) {
+    try {
+
     } catch (error) {
       res.status(500).json({ error: error });
     }

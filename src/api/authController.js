@@ -33,7 +33,7 @@ class AuthControler {
             req.authenticatedUser = user
             next()
         } else {
-            res.status(401).json({ error: "Auth Failed" })
+            res.status(200).json({ error: "Auth Failed" })
         }
     }
 }
