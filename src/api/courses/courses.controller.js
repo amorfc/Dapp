@@ -4,7 +4,7 @@ class CourseController {
     static async getAllCourses(req, res){
         try {
             const { authenticatedUser } = req
-            console.log(`${authenticatedUser.schoolNo} tries to get courses`)
+            console.log(`${authenticatedUser.schoolNo} tries to get all events`)
             const coursesListFromDb = await CoursesDao.getAllCourses(authenticatedUser.schoolNo)
             if(!coursesListFromDb.success){
                 res.status(401).json({ error: coursesListFromDb.error })

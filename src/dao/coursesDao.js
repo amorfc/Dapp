@@ -21,7 +21,7 @@ class CoursesDao {
   static async getAllCourses(schoolNo) {
     try {
       const filter = {
-        'schoolNo': schoolNo,
+        schoolNo: schoolNo,
       };
       const response = await courses.find(filter).toArray();
       return {
