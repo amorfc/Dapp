@@ -114,6 +114,7 @@ class UserController {
   static async enter(req, res) {
     try {
       const { authenticatedUser } = req
+      res.json({data:"Successfully Logged In"})
       console.log(`${authenticatedUser.schoolNo} trying to Use Nfc Card `)
     } catch (error) {
       res.status(500).json({ error: error });
