@@ -94,8 +94,8 @@ class UserController {
   }
   static async logout(req, res) {
     try {
-      const { authenticatedUser } = req
-      console.log(`${authenticatedUser.schoolNo} tries to Logout...`)
+      const { authenticatedUser } = req;
+      console.log(`${authenticatedUser.schoolNo} tries to Logout...`);
       const logoutResponse = await UsersDao.logoutUser(authenticatedUser);
       if (!logoutResponse.success) {
         res.status(401).json({
@@ -113,9 +113,11 @@ class UserController {
 
   static async enter(req, res) {
     try {
-      const { authenticatedUser } = req
-      res.json({data:"Successfully Logged In"})
-      console.log(`${authenticatedUser.schoolNo} trying to Use Nfc Card `)
+      const { authenticatedUser } = req;
+      const { gate_number } = req.body;
+      console.log(req.body);
+      console.log(`${authenticatedUser.schoolNo} trying to Use Nfc Card for Gate Number ${gate_number} `);
+      res.json({ data: "Successfully Entered" });
     } catch (error) {
       res.status(500).json({ error: error });
     }
