@@ -10,6 +10,9 @@ class CourseController {
                 res.status(401).json({ error: coursesListFromDb.error })
                 return
             }
+            coursesListFromDb.data.forEach(element => {
+                delete element['id']
+            });
             res.json({
                 data: coursesListFromDb.data,
                 message: "Courses successfully fetched!!!AmerBombomvski"
